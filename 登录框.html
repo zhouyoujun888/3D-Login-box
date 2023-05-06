@@ -19,6 +19,12 @@
             top: 10px;
         }
 
+        header .login::after {
+            content: "";
+            display: block;
+            clear: both;
+        }
+
         header .login i {
             float: right;
             margin-right: 20px;
@@ -190,10 +196,15 @@
         function $$(sle) {
             return document.querySelectorAll(sle)
         }
+
         $('header .login').addEventListener('click', function (e) {
+            e.stopPropagation()
             $('.flip-modal').style.display = 'block'
+
         })
+
         $('.flip-modal').addEventListener('click', function (e) {
+            e.stopPropagation()
             if (e.target.classList.contains('login')) {
                 $('.flip-modal').classList.remove('register')
                 $('.flip-modal').classList.add('login')
@@ -205,6 +216,9 @@
             if (e.target.classList.contains('close')) {
                 $('.flip-modal').style.display = 'none'
             }
+        })
+        document.addEventListener('click', function () {
+            $('.flip-modal').style.display = 'none'
         })
 
     </script>
